@@ -201,12 +201,15 @@ void update()
         glm::vec3(0.0f, 1.0f, 0.0f));
 	*/
     g_pink_matrix = glm::scale(g_pink_matrix, INIT_SCALE);
+    //glm::vec3 pulse_scale = glm::vec3(cos(g_theta), sin(g_theta), 1.0f);
+    glm::vec3 pulse_scale = glm::vec3(fabs(cos(g_theta)), fabs(cos(g_theta)), 1.0f);
+    g_pink_matrix = glm::scale(g_pink_matrix, pulse_scale);
 
     g_blue_matrix = glm::translate(g_blue_matrix, INIT_POS_PINK);
     g_blue_matrix = glm::translate(g_blue_matrix, g_pink_position); // in relation to pink
     g_blue_matrix = glm::translate(g_blue_matrix, g_blue_position); // in relation to self
-    g_blue_position.x = 2.0f * cos(g_theta);
-    g_blue_position.y = 2.0f * sin(g_theta);
+    g_blue_position.x = 3.0f * cos(g_theta);
+    g_blue_position.y = 1.0f * sin(g_theta);
     g_blue_matrix = glm::rotate(g_blue_matrix,
         g_rotation_blue.y,
         glm::vec3(0.0f, 1.0f, 0.0f));
