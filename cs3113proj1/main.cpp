@@ -52,7 +52,7 @@ constexpr char PINK_SPRITE_FILEPATH[] = "assets/guyPink.png",
 BLUE_SPRITE_FILEPATH[] = "assets/guyBlue.png";
 
 constexpr glm::vec3 INIT_SCALE = glm::vec3(3.6f, 3.6f, 0.0f),
-INIT_POS_PINK = glm::vec3(2.0f, 0.0f, 0.0f),
+INIT_POS_PINK = glm::vec3(0.0f, 0.0f, 0.0f),
 INIT_POS_BLUE = glm::vec3(-2.0f, 0.0f, 0.0f);
 
 constexpr float ROT_INCREMENT = 1.0f;
@@ -195,12 +195,14 @@ void update()
     g_pink_position.x = 2.0f * cos(g_theta);
     g_pink_position.y = 2.0f * sin(g_theta);
     g_theta += delta_time;
+    /*
     g_pink_matrix = glm::rotate(g_pink_matrix,
         g_rotation_pink.y,
         glm::vec3(0.0f, 1.0f, 0.0f));
+	*/
     g_pink_matrix = glm::scale(g_pink_matrix, INIT_SCALE);
 
-    g_blue_matrix = glm::translate(g_blue_matrix, INIT_POS_BLUE);
+    g_blue_matrix = glm::translate(g_blue_matrix, INIT_POS_PINK);
     g_blue_matrix = glm::translate(g_blue_matrix, g_pink_position); // in relation to pink
     g_blue_matrix = glm::translate(g_blue_matrix, g_blue_position); // in relation to self
     g_blue_position.x = 2.0f * cos(g_theta);
