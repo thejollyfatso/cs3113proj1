@@ -70,10 +70,19 @@ float g_previous_ticks = 0.0f;
 
 glm::vec3 g_rotation_pink = glm::vec3(0.0f, 0.0f, 0.0f),
 g_rotation_blue = glm::vec3(0.0f, 0.0f, 0.0f);
+float g_theta = 0.0f;
 
 GLuint g_pink_texture_id,
 g_blue_texture_id;
 
+glm::vec3 g_pink_position = INIT_POS_PINK;
+glm::vec3 g_pink_movement = glm::vec3(0.0f, 0.0f, 0.0f);
+
+glm::vec3 g_blue_position = glm::vec3(0.0f, 0.0f, 0.0f);
+glm::vec3 g_blue_movement = glm::vec3(0.0f, 0.0f, 0.0f);
+
+
+float g_pink_speed = 1.0f;  // move 1 unit per second
 
 GLuint load_texture(const char* filepath)
 {
@@ -182,6 +191,9 @@ void update()
 
     /* Transformations */
     g_pink_matrix = glm::translate(g_pink_matrix, INIT_POS_PINK);
+    //g_pink_position.x = 2.0f * cos(g_theta);
+    //g_pink_position.y = 2.0f * sin(g_theta);
+    //g_theta += delta_time;
     g_pink_matrix = glm::rotate(g_pink_matrix,
         g_rotation_pink.y,
         glm::vec3(0.0f, 1.0f, 0.0f));
