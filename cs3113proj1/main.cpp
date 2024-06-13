@@ -191,15 +191,20 @@ void update()
 
     /* Transformations */
     g_pink_matrix = glm::translate(g_pink_matrix, INIT_POS_PINK);
-    //g_pink_position.x = 2.0f * cos(g_theta);
-    //g_pink_position.y = 2.0f * sin(g_theta);
-    //g_theta += delta_time;
+    g_pink_matrix = glm::translate(g_pink_matrix, g_pink_position);
+    g_pink_position.x = 2.0f * cos(g_theta);
+    g_pink_position.y = 2.0f * sin(g_theta);
+    g_theta += delta_time;
     g_pink_matrix = glm::rotate(g_pink_matrix,
         g_rotation_pink.y,
         glm::vec3(0.0f, 1.0f, 0.0f));
     g_pink_matrix = glm::scale(g_pink_matrix, INIT_SCALE);
 
     g_blue_matrix = glm::translate(g_blue_matrix, INIT_POS_BLUE);
+    g_blue_matrix = glm::translate(g_blue_matrix, g_pink_position); // in relation to pink
+    g_blue_matrix = glm::translate(g_blue_matrix, g_blue_position); // in relation to self
+    g_blue_position.x = 2.0f * cos(g_theta);
+    g_blue_position.y = 2.0f * sin(g_theta);
     g_blue_matrix = glm::rotate(g_blue_matrix,
         g_rotation_blue.y,
         glm::vec3(0.0f, 1.0f, 0.0f));
