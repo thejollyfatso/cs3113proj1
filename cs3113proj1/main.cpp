@@ -29,9 +29,9 @@ enum AppStatus { RUNNING, TERMINATED };
 constexpr int WINDOW_WIDTH = 640,
 WINDOW_HEIGHT = 480;
 
-constexpr float BG_RED = 0.9765625f,
-BG_GREEN = 0.97265625f,
-BG_BLUE = 0.9609375f,
+constexpr float BG_RED = 251.0f/256.0f,
+BG_GREEN = 216.0f/256.0f,
+BG_BLUE = 114.0f/256.0f,
 BG_OPACITY = 1.0f;
 
 constexpr int VIEWPORT_X = 0,
@@ -151,7 +151,7 @@ void initialise()
 
     glUseProgram(g_shader_program.get_program_id());
 
-    glClearColor(BG_RED, BG_BLUE, BG_GREEN, BG_OPACITY);
+    glClearColor(BG_RED, BG_GREEN, BG_BLUE, BG_OPACITY);
 
     g_pink_texture_id = load_texture(PINK_SPRITE_FILEPATH);
     g_blue_texture_id = load_texture(BLUE_SPRITE_FILEPATH);
@@ -199,7 +199,6 @@ void update()
         g_rotation_pink.y,
         glm::vec3(0.0f, 1.0f, 0.0f));
     g_pink_matrix = glm::scale(g_pink_matrix, INIT_SCALE);
-    //glm::vec3 pulse_scale = glm::vec3(cos(g_theta), sin(g_theta), 1.0f);
     glm::vec3 pulse_scale = glm::vec3(fabs(cos(g_theta)), fabs(cos(g_theta)), 1.0f);
     g_pink_matrix = glm::scale(g_pink_matrix, pulse_scale);
 
@@ -208,12 +207,7 @@ void update()
     g_blue_matrix = glm::translate(g_blue_matrix, g_blue_position); // in relation to self
     g_blue_position.x = 3.0f * cos(g_theta);
     g_blue_position.y = 1.0f * sin(g_theta);
-    g_blue_position.z = 1.2f * sin(g_theta); // fucking 4 dimensional being hell yeah
-    /*
-    g_blue_matrix = glm::rotate(g_blue_matrix,
-        g_rotation_blue.y,
-        glm::vec3(0.0f, 1.0f, 0.0f));
-	*/
+    g_blue_position.z = 1.2f * sin(g_theta); // appear and disapper
     g_blue_matrix = glm::scale(g_blue_matrix, INIT_SCALE);
 }
 
